@@ -807,8 +807,8 @@ class Bluebook:
         pass 
     
     def bbHandler(self):
-        #self.step4_hdf3()
-        #self.hdfToExcel2()
-        self.analyzer()
+        self.step4_hdf3()
+        self.hdfToExcel2()
+        #self.analyzer()
         #self.remDD()
         print('DONE.')
