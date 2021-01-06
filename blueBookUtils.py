@@ -672,6 +672,11 @@ class Bluebook:
                     sdmFile = json.load(filee)
                 lastComp = ''
                 
+                expectedTotalCom = 0
+                for sdm in sdmFile:
+                    for comp in sdmFile[sdm]:
+                        expectedTotalCom += 1
+
                 filesInFolder2 = [f for f in listdir(headDir) if (isfile(join(headDir, f)) and f.split('.')[-1]=='h5')]
                 sdmFileNames =  [f for f in sdmFile]
                 lastSdm = sdmFileNames[0]
@@ -702,6 +707,7 @@ class Bluebook:
                 
                 sdmCount  = 1
                 print('Total sdm in File  = {}'.format(len(list(sdmFile.keys()))))
+                print('Total expected Companies : ',expectedTotalCom)
                 companyCountTotal = 1
                 flag1 = False
                 #print(sdmFile.keys())
@@ -709,9 +715,10 @@ class Bluebook:
                     if(sdm == lastSdm.split('.')[0]):
                         flag1 = True
                     if(flag1 == True):
+                        sdm1 = sdm.replace('/', ' ')
                         print('SDM: {} {} Companies: {}'.format(sdm,sdmCount, len(sdmFile[sdm])) )
                         df = pd.DataFrame(columns = self.detailedFieldNamesComplete)
-                        hdfFile = pd.HDFStore( join(headDir, (sdm +'.h5')))
+                        hdfFile = pd.HDFStore( join(headDir, (sdm1 +'.h5')))
                         
                         hdfFile['sdm'] = df
                         row = 0
