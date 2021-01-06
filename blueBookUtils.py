@@ -709,9 +709,10 @@ class Bluebook:
                     if(sdm == lastSdm.split('.')[0]):
                         flag1 = True
                     if(flag1 == True):
+                        sdm1 = sdm.replace('/', ' ')
                         print('SDM: {} {} Companies: {}'.format(sdm,sdmCount, len(sdmFile[sdm])) )
                         df = pd.DataFrame(columns = self.detailedFieldNamesComplete)
-                        hdfFile = pd.HDFStore( join(headDir, (sdm +'.h5')))
+                        hdfFile = pd.HDFStore( join(headDir, (sdm1 +'.h5')))
                         
                         hdfFile['sdm'] = df
                         row = 0
