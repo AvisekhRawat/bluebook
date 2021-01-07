@@ -699,7 +699,11 @@ class Bluebook:
                         lastSdm = f
                     print('Last SDM ',lastSdm)                 
                     
-                
+                eTC = 0
+                for sdm in sdmFile:
+                    for  com in sdmFile[sdm]:
+                        eTC += 1
+                print('Total Expected Companies: {}'.format(eTC))
                 sdmCount  = 1
                 print('Total sdm in File  = {}'.format(len(list(sdmFile.keys()))))
                 companyCountTotal = 1
@@ -710,7 +714,7 @@ class Bluebook:
                         flag1 = True
                     if(flag1 == True):
                         sdm1 = sdm.replace('/', ' ')
-                        print('SDM: {} {} Companies: {}'.format(sdm,sdmCount, len(sdmFile[sdm])) )
+                        print('SDM: {}  Companies: {}'.format(sdm, len(sdmFile[sdm])) )
                         df = pd.DataFrame(columns = self.detailedFieldNamesComplete)
                         hdfFile = pd.HDFStore( join(headDir, (sdm1 +'.h5')))
                         
